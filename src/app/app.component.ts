@@ -15,8 +15,8 @@ export class AppComponent {
  
   constructor(private toastrService:CustomToastrService) {
    toastrService.message("Merhaba","Baslik",{
-    messageType:ToastrMessageType.Error,
-    position:ToastrPosition.BottomCenter
+    messageType:ToastrMessageType.Success,
+    position:ToastrPosition.BottomLeft
    });
 
   }
