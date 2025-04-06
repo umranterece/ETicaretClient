@@ -13,20 +13,17 @@ export class AppComponent implements OnInit {
   title = 'ETicaretClient';
 
  
-  constructor(private toastrService:CustomToastrService, private spinner:NgxSpinnerService) {
-  //  toastrService.message("Merhaba","Baslik",{
-  //   messageType:ToastrMessageType.Success,
-  //   position:ToastrPosition.BottomLeft
-  //  });
+  constructor() {
+
 
   }
   
 
   ngOnInit(){
-    // this.spinner.show('s3');
-
-    // setTimeout(()=>{
-    //   this.spinner.hide('s3');
-    // },5000);
+   
   } 
 }
+
+// $.get("https://localhost:7175/api/Products/GetAll",data =>{
+//   console.log('data',data);
+// })
