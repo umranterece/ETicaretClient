@@ -26,6 +26,46 @@ export class CreateComponent extends BaseComponent implements OnInit {
     create_product.name=name.value;
     create_product.stock=parseInt(stock.value);
     create_product.price=parseFloat(price.value);
+
+    if(!name.value){
+      this.alertify.message("Urun adini giriniz",{
+        dismissOther:true,
+        messageType:MessageType.Warning,
+        positon:Position.TopRight
+      })
+      return;
+    }
+
+    if(parseInt(stock.value)<0){
+      this.alertify.message("stok bilgisini giriniz",{
+        dismissOther:true,
+        messageType:MessageType.Warning,
+        positon:Position.TopRight
+      })
+      return;
+    }
+
+    if(parseFloat(price.value)<0){
+      this.alertify.message("fiyat bilgisini giriniz",{
+        dismissOther:true,
+        messageType:MessageType.Warning,
+        positon:Position.TopRight
+      })
+      return;
+    }
+
+
+    if(!name.value){
+      this.alertify.message("Urun adini giriniz",{
+        dismissOther:true,
+        messageType:MessageType.Warning,
+        positon:Position.TopRight
+      })
+      return;
+    }
+
+
+
     this.productService.create(create_product,()=> {
       this.hideSpinner(SpinnerType.BallAtom);
       this.alertify.message("Urun basariyla eklenmistir",{
@@ -33,6 +73,13 @@ export class CreateComponent extends BaseComponent implements OnInit {
         messageType:MessageType.Success,
         positon:Position.TopRight
       })
+    },errorMessage=>{
+      this.alertify.message(errorMessage,
+        {
+          dismissOther:true,
+          messageType: MessageType.Error,
+          positon: Position.TopRight
+        });
     });
   }
 
