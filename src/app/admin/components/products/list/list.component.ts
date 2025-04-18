@@ -7,6 +7,8 @@ import { List_Product } from 'src/app/contratcs/list_product';
 import { AlertifyService, MessageType, Position } from 'src/app/services/admin/alertify.service';
 import { ProductService } from 'src/app/services/common/models/product.service';
 
+declare var $:any;
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -43,9 +45,12 @@ export class ListComponent extends BaseComponent implements OnInit {
     this.getProducts();
   }
 
-  delete(id:number){
-    alert(id);
-  }
+  // delete(id:number,event){
+  //   console.log(id);
+  //   const img:HTMLInputElement=event.srcElement;
+  //   $(img.parentElement.parentElement).fadeOut(500);
+  //   console.log();
+  // }
 
 }
 
