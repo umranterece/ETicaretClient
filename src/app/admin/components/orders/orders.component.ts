@@ -14,6 +14,6 @@ export class OrdersComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.showSpinner(SpinnerType.BallSpinClockWiseFadeRotating);
+    // this.showSpinner(SpinnerType.BallSpinClockWiseFadeRotating);
   }
 }

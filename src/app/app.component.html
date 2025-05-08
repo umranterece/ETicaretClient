@@ -22,26 +22,32 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" routerLink="products">Ürünler</a>
+                            <a class="nav-link " aria-current="page" routerLink="products">Ürünler</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" routerLink="basket">Sepet</a>
+                            <a class="nav-link " aria-current="page" routerLink="basket">Sepet</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" routerLink="register">Kayıt Ol</a>
+                        <li class="nav-item" *ngIf="!authService.isAuthecticated">
+                            <a class="nav-link " aria-current="page" routerLink="register" >Kayıt Ol</a>
                         </li>
-                        <li class="nav-item">
+
+                        <li class="nav-item" *ngIf="!authService.isAuthecticated">
+                            <a class="nav-link " aria-current="page" routerLink="login">Giriş Yap</a>
+                        </li>
+                        <li class="nav-item " *ngIf="authService.isAuthecticated">
+                            <a class="btn btn-outline-danger " aria-current="page"  (click)="signOut()">Çıkış Yap</a>
+                        </li>
+                        <li class="nav-item" *ngIf="authService.isAuthecticated">
                             <a class="btn btn-outline-success" routerLink="admin">Yönetim Paneli</a>
                         </li>
-
-
+                       
 
                     </ul>
-                    <form class="d-flex">
+                    <!-- <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Ara</button>
-                    </form>
+                    </form> -->
                 </div>
             </div>
         </nav>
