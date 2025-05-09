@@ -1,8 +1,11 @@
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
+import { TokenResponse } from 'src/app/contratcs/token/tokenResponse';
 import { _isAuthenticated, AuthService } from 'src/app/services/common/auth.service';
+import { HttpClientService } from 'src/app/services/common/http-client.service';
 import { UserService } from 'src/app/services/common/models/user.service';
 
 @Component({
@@ -15,9 +18,20 @@ export class LoginComponent extends BaseComponent {
   constructor(private userService:UserService,
     spinner:NgxSpinnerService, private authService:AuthService,
     private activatedRoute:ActivatedRoute,
-    private router:Router
+    private router:Router,
+    private socialAuthService:SocialAuthService
   ){
-   super(spinner); 
+   super(spinner);
+   socialAuthService.authState.subscribe(async (user:SocialUser)=>{
+    console.log(user);
+    this.showSpinner(SpinnerType.BallAtom);
+
+    await userService.googleLogin(user,()=>{
+      this.authService.identityCheck();
+      this.hideSpinner(SpinnerType.BallAtom);
+
+    });
+   }); 
   }
 
   async login(usernameOrEmail:string, password:string){
