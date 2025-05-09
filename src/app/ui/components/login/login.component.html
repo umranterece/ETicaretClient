@@ -18,7 +18,14 @@
 
             <button type="submit" class="btn btn-primary w-100" (click)="login(txtUsernameOrEmail.value,txtPassword.value)">Giris Yap</button>
 
-            <asl-google-signin-button></asl-google-signin-button>
+            <button class="btn btn-light" (click)="facebookLogin()">
+                <img src="../../../../assets/facebook.png" style="width: 30px;" alt=""> Facebook ile Giris Yap
+            </button>
+
+            <button class="btn btn-light">
+                <asl-google-signin-button></asl-google-signin-button>
+                Google ile Giris Yap
+            </button>
     </div>
     <div class="col-md-3"></div>
 </div>
