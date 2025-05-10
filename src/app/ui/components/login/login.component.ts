@@ -6,6 +6,7 @@ import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { TokenResponse } from 'src/app/contratcs/token/tokenResponse';
 import { _isAuthenticated, AuthService } from 'src/app/services/common/auth.service';
 import { HttpClientService } from 'src/app/services/common/http-client.service';
+import { UserAuthService } from 'src/app/services/common/models/user-auth.service';
 import { UserService } from 'src/app/services/common/models/user.service';
 
 @Component({
@@ -15,7 +16,7 @@ import { UserService } from 'src/app/services/common/models/user.service';
 })
 export class LoginComponent extends BaseComponent {
  
-  constructor(private userService:UserService,
+  constructor(private userAuthService:UserAuthService,
     spinner:NgxSpinnerService, private authService:AuthService,
     private activatedRoute:ActivatedRoute,
     private router:Router,
@@ -28,11 +29,11 @@ export class LoginComponent extends BaseComponent {
 
     switch(user.provider){
       case "GOOGLE": 
-      await userService.googleLogin(user,()=>{
+      await userAuthService.googleLogin(user,()=>{
       });
       break;
       case "FACEBOOK":
-        await userService.facebookLogin(user,()=>{
+        await userAuthService.facebookLogin(user,()=>{
         });
         break;
     }
@@ -46,7 +47,7 @@ export class LoginComponent extends BaseComponent {
 
   async login(usernameOrEmail:string, password:string){
     this.showSpinner(SpinnerType.BallAtom);
-    await this.userService.login(usernameOrEmail,password,()=>{
+    await this.userAuthService.login(usernameOrEmail,password,()=>{
       this.authService.identityCheck();
       this.activatedRoute.queryParams.subscribe(params=>{
         const returnUrl:string=params["returnUrl"];
